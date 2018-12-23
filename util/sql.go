@@ -2,9 +2,9 @@ package util
 
 import (
 	"database/sql"
-	"errors"
 	"fmt"
 	"io/ioutil"
+	"path/filepath"
 	"strings"
 
 	// needed for opening sql databases
@@ -13,16 +13,20 @@ import (
 
 // InitTables creates default tables in a database
 func InitTables(db *sql.DB) {
-	data, err := ioutil.ReadFile("./querys.sql")
+	absPath, err := filepath.Abs("./util/querys.sql")
 	if err != nil {
-		panic(errors.New("Error loading querys: " + err))
+		panic(fmt.Errorf("Error getting filepath: \"%s\"", err))
+	}
+	data, err := ioutil.ReadFile(absPath)
+	if err != nil {
+		panic(fmt.Errorf("Error loading querys: \"%s\"", err))
 	}
 	querys := strings.Split(string(data), ");\n")
-	for i := 0; i < len(querys); i++ {
+	for i := 0; i < len(querys)-1; i++ {
 		query := querys[i] + ");"
 		_, err := db.Exec(query)
 		if err != nil {
-			panic(errors.New(fmt.Sprintf("Error \"%s\" executing query:\"%s\"", err, query)))
+			panic(fmt.Errorf("Error \"%s\" executing query:\"%s\"", err, query))
 		}
 	}
 }
