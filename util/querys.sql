@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `ratings` (
   FOREIGN KEY(`video`)         REFERENCES `videos`(`id`)   ON UPDATE CASCADE ON DELETE CASCADE
 );
 -- basicly only dependencies
-CREATE TABLE IF NOT EXISTS `user_group_links` (
+CREATE TABLE IF NOT EXISTS `links_user_group` (
   -- int: unique identifier for a user_group_link
   `id`    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   -- int: id of a user
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `user_group_links` (
   -- link group to groups.id, if entry in groups gets deleted or changed this will be as well
   FOREIGN KEY(`group`) REFERENCES `groups`(`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE TABLE IF NOT EXISTS `video_categorie_links` (
+CREATE TABLE IF NOT EXISTS `links_video_categorie` (
   -- int: unique identifier for a video_categorie_link
   `id`        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   -- int: id of a video
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `video_categorie_links` (
   -- link categorie to categories.id, if entry in categories gets deleted or changed this will be as well
   FOREIGN KEY(`categorie`) REFERENCES `categories`(`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE TABLE IF NOT EXISTS `categorie_perm_groups` (
+CREATE TABLE IF NOT EXISTS `link_categorie_group_permission` (
   -- int: unique identifier for a categorie_readable_group
   `id`        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   -- int: id of a user
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `categorie_perm_groups` (
   -- link categorie to categories.id, if entry in categories gets deleted or changed this will be as well
   FOREIGN KEY(`categorie`) REFERENCES `categories`(`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE TABLE IF NOT EXISTS `categorie_perm_users` (
+CREATE TABLE IF NOT EXISTS `link_categorie_user_permission` (
   -- int: unique identifier for a categorie_readable_user
   `id`        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   -- int: id of a user
