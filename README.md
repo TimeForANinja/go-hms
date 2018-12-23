@@ -20,4 +20,5 @@ nano ~/.profile
 ## install required package
 ```
 go get github.com/xeodou/go-sqlcipher
+go get golang.org/x/crypto/bcrypt
 ```
