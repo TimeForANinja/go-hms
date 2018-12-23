@@ -2,7 +2,10 @@ package util
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
+	"io/ioutil"
+	"strings"
 
 	// needed for opening sql databases
 	_ "github.com/xeodou/go-sqlcipher"
@@ -10,23 +13,16 @@ import (
 
 // InitTables creates default tables in a database
 func InitTables(db *sql.DB) {
-
-	// static creation querys
-	querys := [7]string{
-		"CREATE TABLE IF NOT EXISTS `downloadQ` (`id` INTEGER PRIMARY KEY)",
-		"CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY)",
-		"CREATE TABLE IF NOT EXISTS `categories` (`id` INTEGER PRIMARY KEY)",
-		"CREATE TABLE IF NOT EXISTS `comments` (`id` INTEGER PRIMARY KEY)",
-		"CREATE TABLE IF NOT EXISTS `ratings` (`id` INTEGER PRIMARY KEY)",
-		"CREATE TABLE IF NOT EXISTS `users` (`id` INTEGER PRIMARY KEY)",
-		"CREATE TABLE IF NOT EXISTS `groups` (`id` INTEGER PRIMARY KEY)",
+	data, err := ioutil.ReadFile("./querys.sql")
+	if err != nil {
+		panic(errors.New("Error loading querys: " + err))
 	}
+	querys := strings.Split(string(data), ");\n")
 	for i := 0; i < len(querys); i++ {
-		query := querys[i]
+		query := querys[i] + ");"
 		_, err := db.Exec(query)
 		if err != nil {
-			fmt.Printf("Error \"%s\" executing query:\"%s\"", err, query)
-			return
+			panic(errors.New(fmt.Sprintf("Error \"%s\" executing query:\"%s\"", err, query)))
 		}
 	}
 }
