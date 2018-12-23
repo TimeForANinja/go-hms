@@ -1,7 +1,7 @@
 package main
 
 import (
-	Util "go_home_media_server/util"
+	Util "home_media_server/util"
 )
 
 func main() {
