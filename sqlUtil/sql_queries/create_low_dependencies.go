@@ -30,4 +30,5 @@ const QueryCreateVideos = "CREATE TABLE IF NOT EXISTS `videos` (" +
 	"  FOREIGN KEY(`blockDownloadBy`) REFERENCES `users`(`id`)  ON UPDATE CASCADE ON DELETE SET NULL," +
 	// link addedBy to users.id, if entry in users gets deleted set to null
 	"  FOREIGN KEY(`addedBy`)         REFERENCES `users`(`id`)  ON UPDATE CASCADE ON DELETE SET NULL" +
+	// TODO: might add length, resolution, filesize, filehash...
 	");"
