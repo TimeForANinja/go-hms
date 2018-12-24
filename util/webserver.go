@@ -3,8 +3,12 @@ package util
 import (
 	"log"
 	"net/http"
+	"strings"
 	"time"
 )
+
+const httpsPort = ":8443"
+const httpPort = ":8080"
 
 type page struct {
 	body       []byte
@@ -29,12 +33,12 @@ func StartWeb() {
 	go startHTTPRedirectServer()
 
 	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServeTLS(":443", "cert.pem", "key.pem", nil))
+	log.Fatal(http.ListenAndServeTLS(httpsPort, "cert.pem", "key.pem", nil))
 }
 
 func startHTTPRedirectServer() {
-	log.Fatal(http.ListenAndServe(":80", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		target := "https://" + r.Host + r.URL.Path
+	log.Fatal(http.ListenAndServe(httpPort, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		target := "https://" + strings.Split(r.Host, ":")[0] + httpsPort + r.URL.Path
 		if len(r.URL.RawQuery) > 0 {
 			target += "?" + r.URL.RawQuery
 		}
