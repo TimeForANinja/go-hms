@@ -12,4 +12,6 @@ func main() {
 	db2 := Util.CreateEncryptedDB("test1.db.enc", "acab")
 	defer db2.Close()
 	Util.InitTables(db2)
+
+	Util.StartWeb()
 }
