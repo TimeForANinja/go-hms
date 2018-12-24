@@ -22,3 +22,16 @@ nano ~/.profile
 go get github.com/xeodou/go-sqlcipher
 go get golang.org/x/crypto/bcrypt
 ```
+
+# for cross compilation to windows
+```
+apt install mingw-w64
+git clone https://github.com/openssl/openssl
+cd openssl
+./Configure mingw64 shared --cross-compile-prefix=x86_64-w64-mingw32- --prefix=/usr/x86_64-w64-mingw32
+make
+sudo make install
+cd ..
+rm -rf openssl
+CC=x86_64-w64-mingw32-gcc GOOS=windows GOARCH=amd64 CGO_ENABLED=1 go build -o build/main.exe main.go
+```

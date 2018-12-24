@@ -14,3 +14,7 @@
 # databases
 *.db
 *.db.enc
+
+# build files & util
+openssl/*
+build/*
