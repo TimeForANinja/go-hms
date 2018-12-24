@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `videos` (
   -- int: id of another video thats equal
   `equalVideo`      INTEGER,
   -- int: how often the video was viewed
-  `viewed`          INTEGER NOT NULL DEFAULT 0,
+  `views`          INTEGER NOT NULL DEFAULT 0,
   -- text: location of the local video file (if exists)
   `localFile`       TEXT,
   -- bool: block this video from being downloaded
