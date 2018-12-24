@@ -1,4 +1,4 @@
-package util
+package structs
 
 import "time"
 
@@ -20,7 +20,7 @@ type Group struct {
 	permissionLevel int
 }
 
-// medium dependencies
+// low dependencies
 type Video struct {
 	id              int
 	title           string
@@ -34,7 +34,7 @@ type Video struct {
 	addedBy         *User
 }
 
-// lot of dependencies
+// medium dependencies
 type Download struct {
 	id     int
 	video  *Video

@@ -1,29 +1,34 @@
-package util
+package sqlUtil
 
 import (
 	"database/sql"
 	"fmt"
-	"io/ioutil"
-	"path/filepath"
-	"strings"
-
+	sqlUtil "home_media_server/sqlUtil/sql_queries"
 	// needed for opening sql databases
 	_ "github.com/xeodou/go-sqlcipher"
 )
 
 // InitTables creates default tables in a database
 func InitTables(db *sql.DB) {
-	absPath, err := filepath.Abs("./util/querys.sql")
-	if err != nil {
-		panic(fmt.Errorf("Error getting filepath: \"%s\"", err))
+	querys := []string{
+		// no dependencies
+		sqlUtil.QueryCreateCategories,
+		sqlUtil.QueryCreateUsers,
+		sqlUtil.QueryCreateGroups,
+		// low dependencies
+		sqlUtil.QueryCreateVideos,
+		// medium dependencies
+		sqlUtil.QueryCreateDownloadQ,
+		sqlUtil.QueryCreateComments,
+		sqlUtil.QueryCreateRatings,
+		// high dependencies
+		sqlUtil.QueryCreateLinksUserGroup,
+		sqlUtil.QueryCreateLinksVideoCategorie,
+		sqlUtil.QueryCreateLinksCategorieGroupPermission,
+		sqlUtil.QueryCreateLinksCategorieUserPermission,
 	}
-	data, err := ioutil.ReadFile(absPath)
-	if err != nil {
-		panic(fmt.Errorf("Error loading querys: \"%s\"", err))
-	}
-	querys := strings.Split(string(data), ");\n")
-	for i := 0; i < len(querys)-1; i++ {
-		query := querys[i] + ");"
+	for i := 0; i < len(querys); i++ {
+		query := querys[i]
 		_, err := db.Exec(query)
 		if err != nil {
 			panic(fmt.Errorf("Error \"%s\" executing query:\"%s\"", err, query))
