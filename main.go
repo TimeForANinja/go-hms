@@ -1,17 +1,24 @@
 package main
 
 import (
-	Util "home_media_server/util"
+	"fmt"
+	"home_media_server/sqlUtil"
+	"home_media_server/structs"
 )
 
 func main() {
-	db1 := Util.CreateDB("test2.db")
+	db1 := sqlUtil.CreateDB("test2.db")
 	defer db1.Close()
-	Util.InitTables(db1)
+	sqlUtil.InitTables(db1)
 
-	db2 := Util.CreateEncryptedDB("test1.db.enc", "acab")
+	db2 := sqlUtil.CreateEncryptedDB("test1.db.enc", "acab")
 	defer db2.Close()
-	Util.InitTables(db2)
+	sqlUtil.InitTables(db2)
 
-	Util.StartWeb()
+	// util.StartWeb()
+
+	user := structs.User{Name: "Tobias", PermissionLevel: 9999, PwHash: "1337"}
+	sqlUtil.AddUser(db1, &user)
+	fmt.Println("----------------")
+	sqlUtil.GetUser(db1, "1337")
 }
