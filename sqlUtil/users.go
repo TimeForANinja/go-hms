@@ -2,57 +2,61 @@ package sqlUtil
 
 import (
 	"database/sql"
-	"fmt"
 	"home_media_server/structs"
 )
 
-// GetUser returns a user from database by pwHash
-func GetUser(db *sql.DB, pwHash string) *structs.User {
-	stmt, err := db.Prepare("SELECT * FROM `users` WHERE pwhash = ?")
+// GetUsersByHash returns a user from database by his pwHash
+func GetUsersByHash(db *sql.DB, pwHash string) ([]*structs.User, error) {
+	rows, err := db.Query("SELECT * FROM `users` WHERE pwHash = ?", pwHash)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	defer stmt.Close()
-	rows, err := stmt.Query(pwHash)
-	fmt.Println("rows:", rows)
 	defer rows.Close()
 	var users []*structs.User
 	for rows.Next() {
 		s := structs.User{}
-		rows.Scan(&s.Id, &s.Name, &s.PwHash, &s.PermissionLevel)
+		err := rows.Scan(&s.ID, &s.Name, &s.PwHash, &s.PermissionLevel)
+		if err != nil {
+			return nil, err
+		}
 		users = append(users, &s)
 	}
-	for a := 0; a < len(users); a++ {
-		fmt.Println(*users[a])
-	}
-	return users[1]
-	//	if size(users) == 0 {
-	//		return nil
-	//	} else if size(users) > 1 {
-	//		return nil
-	//	} else {
-	//		return users[0]
-	//	}
+	return users, nil
 }
 
-// AddUser inserts a user into database
-func AddUser(db *sql.DB, user *structs.User) *structs.User {
-	stmt, err := db.Prepare("INSERT INTO `users` (name, pwHash, permissionLevel) VALUES(?, ?, ?)")
-	fmt.Println(user)
-	fmt.Println(*user)
-	fmt.Println(stmt)
+// GetUserByID returns a user from database by his id
+func GetUserByID(db *sql.DB, id int) (*structs.User, error) {
+	rows, err := db.Query("SELECT * FROM `users` WHERE id = ?", id)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	defer stmt.Close()
-	resp, err := stmt.Exec(user.Name, user.PwHash, user.PermissionLevel)
+	defer rows.Close()
+	var users []*structs.User
+	for rows.Next() {
+		s := structs.User{}
+		err := rows.Scan(&s.ID, &s.Name, &s.PwHash, &s.PermissionLevel)
+		if err != nil {
+			return nil, err
+		}
+		users = append(users, &s)
+	}
+	// sth went absolutely wrong when more than one with a UNIQUE id was found
+	if len(users) != 1 {
+		return nil, nil
+	}
+	return users[0], nil
+}
+
+// AddUser inserts a user into database, user.id will get set after the insert
+func AddUser(db *sql.DB, user *structs.User) (*structs.User, error) {
+	resp, err := db.Exec("INSERT INTO `users` (name, pwHash, permissionLevel) VALUES(?,?,?)", user.Name, user.PwHash, user.PermissionLevel)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	lastInsert, err := resp.LastInsertId()
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	user.Id = int(lastInsert)
-	return user
+	user.ID = int(lastInsert)
+	return user, nil
 }

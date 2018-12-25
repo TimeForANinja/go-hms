@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"home_media_server/sqlUtil"
 	"home_media_server/structs"
+	"home_media_server/util"
 )
 
 func main() {
@@ -15,10 +16,11 @@ func main() {
 	defer db2.Close()
 	sqlUtil.InitTables(db2)
 
-	// util.StartWeb()
+	go util.StartWeb()
 
-	user := structs.User{Name: "Tobias", PermissionLevel: 9999, PwHash: "1337"}
-	sqlUtil.AddUser(db1, &user)
+	inputUser := structs.User{Name: "Tobias", PermissionLevel: 9999, PwHash: "1337"}
+	sqlUtil.AddUser(db1, &inputUser)
 	fmt.Println("----------------")
-	sqlUtil.GetUser(db1, "1337")
+	sqlUtil.GetUsersByHash(db1, "1337")
+	sqlUtil.GetUserByID(db1, 4)
 }

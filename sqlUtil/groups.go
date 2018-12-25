@@ -1,0 +1,43 @@
+package sqlUtil
+
+import (
+	"database/sql"
+	"home_media_server/structs"
+)
+
+// GetGroupByID returns a group from database by his id
+func GetGroupByID(db *sql.DB, id int) (*structs.Group, error) {
+	rows, err := db.Query("SELECT * FROM `groups` WHERE id = ?", id)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var groups []*structs.Group
+	for rows.Next() {
+		s := structs.Group{}
+		err := rows.Scan(&s.ID, &s.Name, &s.PermissionLevel)
+		if err != nil {
+			return nil, err
+		}
+		groups = append(groups, &s)
+	}
+	// sth went absolutely wrong when more than one with a UNIQUE id was found
+	if len(groups) != 1 {
+		return nil, nil
+	}
+	return groups[0], nil
+}
+
+// AddGroup inserts a group into database, group.id will get set after the insert
+func AddGroup(db *sql.DB, group *structs.Group) (*structs.Group, error) {
+	resp, err := db.Exec("INSERT INTO `groups` (name, permissionLevel) VALUES(?,?)", group.Name, group.PermissionLevel)
+	if err != nil {
+		return nil, err
+	}
+	lastInsert, err := resp.LastInsertId()
+	if err != nil {
+		return nil, err
+	}
+	group.ID = int(lastInsert)
+	return group, nil
+}
