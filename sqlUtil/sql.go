@@ -3,7 +3,7 @@ package sqlUtil
 import (
 	"database/sql"
 	"fmt"
-	sqlUtil "home_media_server/sqlUtil/sql_queries"
+	"home_media_server/sqlUtil/sqlQueries"
 	// needed for opening sql databases
 	_ "github.com/xeodou/go-sqlcipher"
 )
@@ -12,26 +12,26 @@ import (
 func InitTables(db *sql.DB) {
 	querys := []string{
 		// no dependencies
-		sqlUtil.QueryCreateCategories,
-		sqlUtil.QueryCreateUsers,
-		sqlUtil.QueryCreateGroups,
+		sqlQueries.QueryCreateCategories,
+		sqlQueries.QueryCreateUsers,
+		sqlQueries.QueryCreateGroups,
 		// low dependencies
-		sqlUtil.QueryCreateVideos,
+		sqlQueries.QueryCreateVideos,
 		// medium dependencies
-		sqlUtil.QueryCreateDownloadQ,
-		sqlUtil.QueryCreateComments,
-		sqlUtil.QueryCreateRatings,
+		sqlQueries.QueryCreateDownloadQ,
+		sqlQueries.QueryCreateComments,
+		sqlQueries.QueryCreateRatings,
 		// high dependencies
-		sqlUtil.QueryCreateLinksUserGroup,
-		sqlUtil.QueryCreateLinksVideoCategorie,
-		sqlUtil.QueryCreateLinksCategorieGroupPermission,
-		sqlUtil.QueryCreateLinksCategorieUserPermission,
+		sqlQueries.QueryCreateLinksUserGroup,
+		sqlQueries.QueryCreateLinksVideoCategorie,
+		sqlQueries.QueryCreateLinksCategorieGroupPermission,
+		sqlQueries.QueryCreateLinksCategorieUserPermission,
 	}
 	for i := 0; i < len(querys); i++ {
 		query := querys[i]
 		_, err := db.Exec(query)
 		if err != nil {
-			panic(fmt.Errorf("Error \"%s\" executing query:\"%s\"", err, query))
+			panic(fmt.Errorf("Error \"%s\" creating a table with query:\"%s\"", err, query))
 		}
 	}
 }
@@ -42,12 +42,12 @@ func CreateDB(file string) *sql.DB {
 
 	db, err := sql.Open("sqlite3", file)
 	if err != nil {
-		fmt.Println("err1", err)
+		panic(fmt.Errorf("Error \"%s\" while trying to open db", err))
 	}
 
 	_, err = db.Exec("PRAGMA foreign_keys = ON;")
 	if err != nil {
-		fmt.Println("err2", err)
+		panic(fmt.Errorf("Error \"%s\" while enabling foreign keys", err))
 	}
 
 	return db
@@ -58,18 +58,17 @@ func CreateEncryptedDB(file string, password string) *sql.DB {
 	fmt.Printf("CreateEncryptedDB file:\"%s\" password:\"%s\"\n", file, password)
 	db, err := sql.Open("sqlite3", file)
 	if err != nil {
-		fmt.Println("err1", err)
+		panic(fmt.Errorf("Error \"%s\" while trying to open db", err))
 	}
 
-	p := fmt.Sprintf("PRAGMA key = '%s';", password)
-	_, err = db.Exec(p)
+	_, err = db.Exec(fmt.Sprintf("PRAGMA key = '%s';", password))
 	if err != nil {
-		fmt.Println("err2", err)
+		panic(fmt.Errorf("Error \"%s\" while setting password", err))
 	}
 
 	_, err = db.Exec("PRAGMA foreign_keys = ON;")
 	if err != nil {
-		fmt.Println("err3", err)
+		panic(fmt.Errorf("Error \"%s\" while enabling foreign keys", err))
 	}
 
 	return db

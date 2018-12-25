@@ -1,4 +1,4 @@
-package sqlUtil
+package sqlQueries
 
 // QueryCreateLinksUserGroup is the query to create a links_user_group table
 const QueryCreateLinksUserGroup = "CREATE TABLE IF NOT EXISTS `links_user_group` (" +
@@ -12,6 +12,8 @@ const QueryCreateLinksUserGroup = "CREATE TABLE IF NOT EXISTS `links_user_group`
 	"  FOREIGN KEY(`user`) REFERENCES `users`(`id`) ON UPDATE CASCADE ON DELETE CASCADE," +
 	// link group to groups.id, if entry in groups gets deleted or changed this will be as well
 	"  FOREIGN KEY(`group`) REFERENCES `groups`(`id`) ON UPDATE CASCADE ON DELETE CASCADE" +
+	// user + group combination only allowed once
+	"  CONSTRAINT unq UNIQUE (`user`, `group`)" +
 	");"
 
 // QueryCreateLinksVideoCategorie is the query to create a links_video_categorie table
@@ -26,6 +28,8 @@ const QueryCreateLinksVideoCategorie = "CREATE TABLE IF NOT EXISTS `links_video_
 	"  FOREIGN KEY(`video`) REFERENCES `videos`(`id`) ON UPDATE CASCADE ON DELETE CASCADE," +
 	// link categorie to categories.id, if entry in categories gets deleted or changed this will be as well
 	"  FOREIGN KEY(`categorie`) REFERENCES `categories`(`id`) ON UPDATE CASCADE ON DELETE CASCADE" +
+	// video + categorie combination only allowed once
+	"  CONSTRAINT unq UNIQUE (`video`, `categorie`)" +
 	");"
 
 // QueryCreateLinksCategorieGroupPermission is the query to create a link_categorie_group_permission table
@@ -44,6 +48,8 @@ const QueryCreateLinksCategorieGroupPermission = "CREATE TABLE IF NOT EXISTS `li
 	"  FOREIGN KEY(`group`) REFERENCES `groups`(`id`) ON UPDATE CASCADE ON DELETE CASCADE," +
 	// link categorie to categories.id, if entry in categories gets deleted or changed this will be as well
 	"  FOREIGN KEY(`categorie`) REFERENCES `categories`(`id`) ON UPDATE CASCADE ON DELETE CASCADE" +
+	// group + categorie combination only allowed once
+	"  CONSTRAINT unq UNIQUE (`group`, `categorie`)" +
 	");"
 
 // QueryCreateLinksCategorieUserPermission is the query to create a link_categorie_user_permission table
@@ -62,4 +68,6 @@ const QueryCreateLinksCategorieUserPermission = "CREATE TABLE IF NOT EXISTS `lin
 	"  FOREIGN KEY(`user`) REFERENCES `user`(`id`) ON UPDATE CASCADE ON DELETE CASCADE," +
 	// link categorie to categories.id, if entry in categories gets deleted or changed this will be as well
 	"  FOREIGN KEY(`categorie`) REFERENCES `categories`(`id`) ON UPDATE CASCADE ON DELETE CASCADE" +
+	// user + categorie combination only allowed once
+	"  CONSTRAINT unq UNIQUE (`user`, `categorie`)" +
 	");"
