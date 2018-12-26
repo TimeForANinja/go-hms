@@ -24,7 +24,7 @@ func uncacheUser(id int) {
 
 func cacheUserByID(id int) bool {
 	user, err := sqlUtil.GetUserByID(db, id)
-	if err != nil {
+	if err != nil || user == nil {
 		return false
 	}
 	users[user.ID] = user
