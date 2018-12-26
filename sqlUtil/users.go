@@ -5,9 +5,10 @@ import (
 	"home_media_server/structs"
 )
 
-// GetUsersByHash returns a user from database by his pwHash
-func GetUsersByHash(db *sql.DB, pwHash string) ([]*structs.User, error) {
-	rows, err := db.Query("SELECT * FROM `users` WHERE pwHash = ?", pwHash)
+// GetUsersByCredentials returns a user from database by his pwHash and username
+// only returns a single user user is unique
+func GetUserByCredentials(db *sql.DB, username string, pwHash string) (*structs.User, error) {
+	rows, err := db.Query("SELECT * FROM `users` WHERE pwHash = ? AND name = ?", pwHash, username)
 	if err != nil {
 		return nil, err
 	}
@@ -21,7 +22,10 @@ func GetUsersByHash(db *sql.DB, pwHash string) ([]*structs.User, error) {
 		}
 		users = append(users, &s)
 	}
-	return users, nil
+	if len(users) != 1 {
+		return nil, nil
+	}
+	return users[0], nil
 }
 
 // GetUserByID returns a user from database by his id
@@ -48,7 +52,13 @@ func GetUserByID(db *sql.DB, id int) (*structs.User, error) {
 }
 
 // AddUser inserts a user into database, user.id will get set after the insert
-func AddUser(db *sql.DB, user *structs.User) (*structs.User, error) {
+func AddUser(db *sql.DB, name string, pwHash string, permissionLevel int) (*structs.User, error) {
+	s := structs.User{Name: name, PwHash: pwHash, PermissionLevel: permissionLevel}
+	return addUser(db, &s)
+}
+
+// might export this later on
+func addUser(db *sql.DB, user *structs.User) (*structs.User, error) {
 	resp, err := db.Exec("INSERT INTO `users` (name, pwHash, permissionLevel) VALUES(?,?,?)", user.Name, user.PwHash, user.PermissionLevel)
 	if err != nil {
 		return nil, err

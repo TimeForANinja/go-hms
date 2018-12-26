@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"home_media_server/cache"
 	"home_media_server/sqlUtil"
-	"home_media_server/structs"
 	"home_media_server/util"
 )
 
@@ -16,11 +16,13 @@ func main() {
 	defer db2.Close()
 	sqlUtil.InitTables(db2)
 
+	cache.DefineDB(db1)
+
 	go util.StartWeb()
 
-	inputUser := structs.User{Name: "Tobias", PermissionLevel: 9999, PwHash: "1337"}
-	sqlUtil.AddUser(db1, &inputUser)
+	// Testing:
+	sqlUtil.AddUser(db1, "Tobias", "1337", 9999)
 	fmt.Println("----------------")
-	sqlUtil.GetUsersByHash(db1, "1337")
+	sqlUtil.GetUserByCredentials(db1, "Tobias", "1337")
 	sqlUtil.GetUserByID(db1, 4)
 }

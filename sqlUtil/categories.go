@@ -6,15 +6,15 @@ import (
 )
 
 // GetCategorieByID returns a group from database by his id
-func GetCategorieByID(db *sql.DB, id int) (*structs.Categorie, error) {
+func GetCategorieByID(db *sql.DB, id int) (*structs.SimpleCategorie, error) {
 	rows, err := db.Query("SELECT * FROM `categories` WHERE id = ?", id)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var categories []*structs.Categorie
+	var categories []*structs.SimpleCategorie
 	for rows.Next() {
-		s := structs.Categorie{}
+		s := structs.SimpleCategorie{}
 		err := rows.Scan(&s.ID, &s.Name, &s.ParentCategorie)
 		if err != nil {
 			return nil, err
@@ -29,7 +29,7 @@ func GetCategorieByID(db *sql.DB, id int) (*structs.Categorie, error) {
 }
 
 // AddCategorie inserts a group into database, group.id will get set after the insert
-func AddCategorie(db *sql.DB, categorie *structs.Categorie) (*structs.Categorie, error) {
+func AddCategorie(db *sql.DB, categorie *structs.SimpleCategorie) (*structs.SimpleCategorie, error) {
 	resp, err := db.Exec("INSERT INTO `groups` (name, parentCategorie) VALUES(?,?)", categorie.Name, categorie.ParentCategorie)
 	if err != nil {
 		return nil, err
