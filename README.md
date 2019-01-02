@@ -10,7 +10,7 @@ sudo tar -C /usr/local -xzf go1.11.4.linux-amd64.tar.gz
 ```
 ## add go to path
 ```
-nano ~/.profile
+nano ~/.profile (user only) || nano /etc/profile (global)
 ```
 > prepend
 > ```
