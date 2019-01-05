@@ -2,7 +2,8 @@ package sqlUtil
 
 import (
 	"database/sql"
-	"home_media_server/structs"
+
+	"github.com/timeforaninja/home_media_server/structs"
 )
 
 // GetUsersByCredentials returns a user from database by his pwHash and username
