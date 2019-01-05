@@ -15,6 +15,9 @@
 *.db
 *.db.enc
 
+# certificates
+*.pem
+
 # build files & util
 openssl/*
 build/*
