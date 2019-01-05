@@ -2,7 +2,8 @@ package cache
 
 import (
 	"database/sql"
-	"home_media_server/structs"
+
+	"github.com/timeforaninja/home_media_server/structs"
 )
 
 var db *sql.DB
@@ -14,4 +15,9 @@ var categories map[int]*structs.Categorie = make(map[int]*structs.Categorie)
 // it should be the first function being called
 func DefineDB(dbRef *sql.DB) {
 	db = dbRef
+}
+
+func PopulateCache() error {
+	// TODO: write this
+	return nil
 }

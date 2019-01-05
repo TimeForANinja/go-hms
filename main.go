@@ -1,28 +1,27 @@
 package main
 
 import (
-	"fmt"
-	"home_media_server/cache"
-	"home_media_server/sqlUtil"
-	"home_media_server/util"
+	"github.com/timeforaninja/home_media_server/cache"
+	"github.com/timeforaninja/home_media_server/sqlUtil"
 )
 
 func main() {
-	db1 := sqlUtil.CreateDB("test2.db")
+	db1 := sqlUtil.CreateDB("test.db")
 	defer db1.Close()
 	sqlUtil.InitTables(db1)
 
-	db2 := sqlUtil.CreateEncryptedDB("test1.db.enc", "acab")
+	db2 := sqlUtil.CreateEncryptedDB("test.db.enc", "1337")
 	defer db2.Close()
 	sqlUtil.InitTables(db2)
 
 	cache.DefineDB(db1)
-
-	go util.StartWeb()
+	cache.PopulateCache()
 
 	// Testing:
-	sqlUtil.AddUser(db1, "Tobias", "1337", 9999)
-	fmt.Println("----------------")
-	sqlUtil.GetUserByCredentials(db1, "Tobias", "1337")
-	sqlUtil.GetUserByID(db1, 4)
+	//	fmt.Println(sqlUtil.AddUser(db1, "Tobias", "1337", 9999))
+	//	fmt.Println("----------------")
+	//	fmt.Println(sqlUtil.GetUserByCredentials(db1, "Tobias", "1337"))
+	//	fmt.Println(sqlUtil.GetUserByID(db1, 4))
+
+	//	util.StartWeb()
 }
