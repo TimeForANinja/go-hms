@@ -24,8 +24,8 @@ install:
   - go version
   - go env
   - sh: sudo apt install libssl-dev
-  - sudo go get -u github.com/xeodou/go-sqlcipher
-  - sudo go get -u golang.org/x/crypto/bcrypt
+  - sh: sudo go get -u github.com/xeodou/go-sqlcipher
+  - sh: sudo go get -u golang.org/x/crypto/bcrypt
   - go vet ./...
 
 build_script:
