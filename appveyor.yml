@@ -2,8 +2,6 @@ build: off
 
 version: "1.0.0-{build}"
 
-platform: x64
-
 branches:
   only:
     - master
