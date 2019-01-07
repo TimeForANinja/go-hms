@@ -1,3 +1,6 @@
+# go-hms
+a simple, standalon home media server written in go(lang)
+
 # installation
 ## install dependencies
 ```

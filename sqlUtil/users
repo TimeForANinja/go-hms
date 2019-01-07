@@ -3,7 +3,7 @@ package sqlUtil
 import (
 	"database/sql"
 
-	"github.com/timeforaninja/home_media_server/structs"
+	"github.com/timeforaninja/go-hms/structs"
 )
 
 // GetUsersByCredentials returns a user from database by his pwHash and username

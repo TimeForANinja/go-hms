@@ -3,7 +3,7 @@ package cache
 import (
 	"database/sql"
 
-	"github.com/timeforaninja/home_media_server/structs"
+	"github.com/timeforaninja/go-hms/structs"
 )
 
 var db *sql.DB

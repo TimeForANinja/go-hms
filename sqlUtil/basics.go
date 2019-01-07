@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/timeforaninja/home_media_server/sqlUtil/sqlQueries"
+	"github.com/timeforaninja/go-hms/sqlUtil/sqlQueries"
 
 	// needed for opening sql databases
 	_ "github.com/xeodou/go-sqlcipher"

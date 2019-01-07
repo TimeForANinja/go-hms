@@ -1,8 +1,8 @@
 package cache
 
 import (
-	"github.com/timeforaninja/home_media_server/sqlUtil"
-	"github.com/timeforaninja/home_media_server/structs"
+	"github.com/timeforaninja/go-hms/sqlUtil"
+	"github.com/timeforaninja/go-hms/structs"
 )
 
 var users map[int]*structs.User = make(map[int]*structs.User)

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/timeforaninja/home_media_server/cache"
-	"github.com/timeforaninja/home_media_server/sqlUtil"
+	"github.com/timeforaninja/go-hms/cache"
+	"github.com/timeforaninja/go-hms/sqlUtil"
 )
 
 func main() {

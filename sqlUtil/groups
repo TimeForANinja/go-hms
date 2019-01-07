@@ -3,7 +3,7 @@ package sqlUtil
 import (
 	"database/sql"
 
-	"github.com/timeforaninja/home_media_server/structs"
+	"github.com/timeforaninja/go-hms/structs"
 )
 
 // GetGroupByID returns a group from database by his id
