@@ -11,14 +11,14 @@ clone_folder: /usr/go/src/github.com/timeforaninja/go-hms
 environment:
   GOPATH: /usr/go/
 
-stack: go 1.10
+stack: go 1.11
 
 image:
   - Ubuntu1804
 
 install:
-  - echo %PATH%
-  - echo %GOPATH%
+  - echo $PATH
+  - echo $GOPATH
   - go version
   - go env
   - sh: sudo apt install libssl-dev
@@ -26,8 +26,8 @@ install:
   - go get -u golang.org/x/crypto/bcrypt
 
 build_script:
-  - go build -o buildOutput\hms
+  - go build -o bin/go-hms-{version}
 
 artifacts:
-  - path: buildOutput\hms
+  - path: bin/hms
     name: binary_linux
