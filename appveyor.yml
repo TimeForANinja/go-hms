@@ -1,0 +1,20 @@
+build: off
+
+version: "1.0.{build}"
+
+clone_folder: /usr/go/src/github.com/timeforaninja/go-hms
+
+environment:
+  GOPATH: /usr/go/
+
+stack: go 1.10
+
+image:
+  - Ubuntu1804
+
+install:
+  - sh: sudo apt install libssl-dev
+  - go version
+  - go env
+  - go get -u github.com/xeodou/go-sqlcipher
+  - go get -u golang.org/x/crypto/bcrypt
