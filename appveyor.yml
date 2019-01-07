@@ -1,6 +1,6 @@
 build: off
 
-version: "1.0.0-{build}"
+version: "{branch}-v1.0.0-{build}"
 
 branches:
   only:
@@ -18,6 +18,8 @@ image:
 
 install:
   - echo $PATH
+  - echo $GOPATH
+  - sh: GOPATH=/usr/go/
   - echo $GOPATH
   - go version
   - go env
