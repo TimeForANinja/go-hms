@@ -7,6 +7,8 @@ type MovieSimple struct {
 	Title           string
 	ImdbRef         string
 	ImdbRating      float64
+	Trailer         int
+	CoverFile       string
 	LocalFile       string
 	BlockDownload   bool
 	BlockDownloadBy uint64
@@ -21,6 +23,8 @@ type Movie struct {
 	Title           string
 	ImdbRef         string
 	ImdbRating      float64
+	Trailer         *Video
+	CoverFile       string
 	LocalFile       string
 	BlockDownload   bool
 	BlockDownloadBy *User

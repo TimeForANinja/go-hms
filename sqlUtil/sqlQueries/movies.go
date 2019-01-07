@@ -10,6 +10,10 @@ const QueryCreateMovies = "CREATE TABLE IF NOT EXISTS \"movies\" (" +
 	"  \"imdbRef\"         TEXT    NOT NULL UNIQUE," +
 	// real: the movie's imdb rating
 	"  \"imdbRating\"      REAL    NOT NULL," +
+	// int: the movie's trailer in video
+	"  \"trailer\"         INT," +
+	// text: the movie's cover photo file location
+	"  \"coverFile\"       TEXT," +
 	// text: location of the local video file (if exists)
 	"  \"localFile\"       TEXT             UNIQUE," +
 	// bool: block this video from being downloaded
@@ -27,6 +31,8 @@ const QueryCreateMovies = "CREATE TABLE IF NOT EXISTS \"movies\" (" +
 	"  \"fileHash\"        TEXT             UNIQUE," +
 	// int: the file size in bytes (if any)
 	"  \"fileSize\"        INTEGER," +
+	// link trailer to videos.id, if entry in videos gets deleted set null
+	"  FOREIGN KEY(\"trailer\")         REFERENCES \"videos\"(\"id\") ON UPDATE CASCADE ON DELETE SET NULL," +
 	// link blockDownloadBy to users.id, if entry in users gets deleted set to null
 	// TODO: may be able to delete video if theres also no one blocking it anymore?
 	"  FOREIGN KEY(\"blockDownloadBy\") REFERENCES \"users\"(\"id\")  ON UPDATE CASCADE ON DELETE SET NULL," +
