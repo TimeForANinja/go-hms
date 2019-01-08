@@ -1,36 +1,27 @@
-build: off
-
 version: "{branch}-v1.0.0-{build}"
 
 branches:
   only:
     - master
 
-clone_folder: /usr/go/src/github.com/timeforaninja/go-hms
-
-environment:
-  GOPATH: /usr/go/
-
-stack: go 1.11
-
 image:
   - Ubuntu1804
 
+stack: go 1.11
+
 install:
-  - echo $PATH
-  - echo $GOPATH
-  - sh: GOPATH=/usr/go/
-  - echo $GOPATH
+  - sh: echo $PATH
+  - sh: echo $GOPATH
   - go version
   - go env
-  - sh: sudo apt install libssl-dev
-  - sh: sudo go get -u github.com/xeodou/go-sqlcipher
-  - sh: sudo go get -u golang.org/x/crypto/bcrypt
+  # libssl on linux & openssl on win already preinstalled
+  - go get -u github.com/xeodou/go-sqlcipher
+  - go get -u golang.org/x/crypto/bcrypt
   - go vet ./...
 
 build_script:
-  - go build -o bin/go-hms-{version}
+  - "go build -o bin/go-hms
 
 artifacts:
-  - path: bin/hms
+  - path: bin/go-hms
     name: binary_linux
