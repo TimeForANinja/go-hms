@@ -3,12 +3,12 @@ package structs
 type CategorieSimple struct {
 	ID              uint64
 	Name            string
-	ParentCategorie uint64
+	ParentCategorie uint64 // nullable => 0
 }
 type Categorie struct {
 	ID              uint64
 	Name            string
-	ParentCategorie *Categorie
+	ParentCategorie *Categorie // nullable
 }
 
 type LinkCategorieUserPermissionSimple struct {

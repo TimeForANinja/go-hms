@@ -12,30 +12,30 @@ type VideoSimple struct {
 	Title           string
 	DownloadRef     string
 	Views           uint64
-	LocalFile       string
+	LocalFile       string // nullable
 	blockDownload   bool
-	blockDownloadBy uint64
+	blockDownloadBy uint64 // nullable => 0
 	added           time.Time
-	addedBy         uint64
+	addedBy         uint64 // nullable => 0
 	length          uint64
 	resolution      Resolution
-	fileHash        string
-	fileSize        uint64
+	fileHash        string // nullable
+	fileSize        uint64 // nullable => 0
 }
 type Video struct {
 	ID              uint64
 	Title           string
 	DownloadRef     string
 	Views           uint64
-	LocalFile       string
+	LocalFile       string // nullable
 	blockDownload   bool
-	blockDownloadBy *User
+	blockDownloadBy *User // nullable
 	added           time.Time
-	addedBy         *User
+	addedBy         *User // nullable
 	length          uint64
 	resolution      Resolution
-	fileHash        string
-	fileSize        uint64
+	fileHash        string // nullable
+	fileSize        uint64 // nullable => 0
 }
 
 type Resolution struct {

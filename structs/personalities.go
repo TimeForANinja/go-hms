@@ -5,16 +5,16 @@ import "time"
 type PersonalitySimple struct {
 	ID      uint64
 	Name    string
-	ImdbRef string
+	ImdbRef string // nullable
 	Created time.Time
-	Creator uint64
+	Creator uint64 // nullable => 0
 }
 type Personality struct {
 	ID      uint64
 	Name    string
-	ImdbRef string
+	ImdbRef string // nullable
 	Created time.Time
-	Creator *User
+	Creator *User // nullable
 }
 
 type LinkPersonalityVideoSimple struct {

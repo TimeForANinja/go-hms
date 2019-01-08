@@ -7,12 +7,12 @@ type GroupSimple struct {
 	Name            string
 	PermissionLevel uint64
 	Created         time.Time
-	Creator         int
+	Creator         uint64 // nullable => 0
 }
 type Group struct {
 	ID              uint64
 	Name            string
 	PermissionLevel uint64
 	Created         time.Time
-	Creator         *User
+	Creator         *User // nullable
 }

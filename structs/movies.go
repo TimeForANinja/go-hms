@@ -4,33 +4,35 @@ import "time"
 
 type MovieSimple struct {
 	ID              uint64
-	Title           string
+	Title           string // TODO: format
+	AltTitles       string
 	ImdbRef         string
 	ImdbRating      float64
-	Trailer         int
-	CoverFile       string
-	LocalFile       string
+	Trailer         uint64 // nullable => 0
+	CoverFile       string // nullable
+	LocalFile       string // nullable
 	BlockDownload   bool
-	BlockDownloadBy uint64
+	BlockDownloadBy uint64 // nullable => 0
 	Added           time.Time
-	AddedBy         uint64
+	AddedBy         uint64 // nullable => 0
 	Length          uint64
-	FileHash        string
-	FileSize        uint64
+	FileHash        string // nullable
+	FileSize        uint64 // nullable => 0
 }
 type Movie struct {
 	ID              uint64
-	Title           string
+	Title           string // TODO: format
+	AltTitles       string
 	ImdbRef         string
 	ImdbRating      float64
-	Trailer         *Video
-	CoverFile       string
-	LocalFile       string
+	Trailer         *Video // nullable
+	CoverFile       string // nullable
+	LocalFile       string // nullable
 	BlockDownload   bool
-	BlockDownloadBy *User
+	BlockDownloadBy *User // nullable
 	Added           time.Time
-	AddedBy         *User
+	AddedBy         *User // nullable
 	Length          uint64
-	FileHash        string
-	FileSize        uint64
+	FileHash        string // nullable
+	FileSize        uint64 // nullable => 0
 }

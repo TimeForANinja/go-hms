@@ -8,7 +8,7 @@ type UserSimple struct {
 	PwHash          string
 	PermissionLevel uint64
 	Created         time.Time
-	Creator         uint64
+	Creator         uint64 // nullable => 0
 }
 type User struct {
 	ID              uint64
@@ -16,7 +16,7 @@ type User struct {
 	PwHash          string
 	PermissionLevel uint64
 	Created         time.Time
-	Creator         *User
+	Creator         *User // nullable
 }
 
 type LinkUserGroupSimple struct {
@@ -34,7 +34,7 @@ type CommentSimple struct {
 	ID            uint64
 	User          uint64
 	Video         uint64
-	ParentComment uint64
+	ParentComment uint64 // nullable => 0
 	Comment       string
 	added         time.Time
 }
@@ -42,7 +42,7 @@ type Comment struct {
 	ID            uint64
 	User          *User
 	Video         *Video
-	ParentComment *Comment
+	ParentComment *Comment // nullable
 	Comment       string
 	added         time.Time
 }
