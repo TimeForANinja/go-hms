@@ -6,6 +6,8 @@ const QueryCreateMovies = "CREATE TABLE IF NOT EXISTS \"movies\" (" +
 	"  \"id\"              INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
 	// text: the title of the video
 	"  \"title\"           TEXT    NOT NULL," +
+	// text: alternative titles formatted as [[<identifier>, <title>], ...]
+	"  \"alt_titles\" TEXT," +
 	// text: the mobie's imdb rating
 	"  \"imdbRef\"         TEXT    NOT NULL UNIQUE," +
 	// real: the movie's imdb rating

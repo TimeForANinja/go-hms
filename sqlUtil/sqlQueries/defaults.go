@@ -1,6 +1,6 @@
 package sqlQueries
 
-// add the initial root user with pw root
+// add the initial root user with pw "root"
 const QueryDefaultAdminUser = "INSERT INTO \"users\" (\"name\", \"pwHash\", \"permissionLevel\", \"created\", \"creator\") VALUES('root', '$2a$10$vyRPiPsOLdY7xOW4ctEa1emX16B6G1f7nOEZomJkdytWOwVLCS.UC', 9999, 0, 1)"
 
 // add @everyone group

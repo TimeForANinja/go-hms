@@ -4,10 +4,8 @@ package sqlQueries
 const QueryCreatePlaylists = "CREATE TABLE IF NOT EXISTS \"playlists\" (" +
 	// int: unique identifier for a playlist
 	"  \"id\"         INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
-	// text: original name of the movie
+	// text: original name of the playlist
 	"  \"name\"       TEXT," +
-	// text: alternative titles formatted as [[<identifier>, <title>], ...]
-	"  \"alt_titles\" TEXT," +
 	// bool: whether the playlist is public
 	"  \"public\"     INTEGER NOT NULL CHECK (public IN (0,1)) DEFAULT 0," +
 	// int: unix timestamp the user was created
