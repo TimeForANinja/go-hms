@@ -2,14 +2,9 @@ package cache
 
 import (
 	"database/sql"
-
-	"github.com/timeforaninja/go-hms/structs"
 )
 
 var db *sql.DB
-
-var groups map[int]*structs.Group = make(map[int]*structs.Group)
-var categories map[int]*structs.Categorie = make(map[int]*structs.Categorie)
 
 // DefineDB is used to give the cache access to the db
 // it should be the first function being called
