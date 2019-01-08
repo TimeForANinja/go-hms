@@ -4,12 +4,15 @@ branches:
   only:
     - master
 
+clone_folder: /usr/local/go/src/github.com/timeforaninja/go-hms
+
 image:
   - Ubuntu1804
 
 stack: go 1.11
 
 install:
+  - sh: GOPATH=/usr/local/go
   - sh: echo $PATH
   - sh: echo $GOPATH
   - go version
