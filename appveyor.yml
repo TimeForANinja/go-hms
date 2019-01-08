@@ -23,7 +23,7 @@ install:
   - go vet ./...
 
 build_script:
-  - go build -o bin/go-hms
+  - go build -o bin/go-hms main.go
 
 artifacts:
   - path: bin/go-hms
