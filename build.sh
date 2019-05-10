@@ -6,18 +6,18 @@ echo $PWD
 cd ./building
 
 echo "preBuild.sh"
-./preBuild.sh
+sudo ./preBuild.sh
 
 echo "generateHTMLSchema.sh"
-./generateHTMLSchema.sh
+sudo ./generateHTMLSchema.sh
 echo "generatePNGSchema.sh"
-./generatePNGSchema.sh
+sudo ./generatePNGSchema.sh
 echo "linux.sh"
-./linux.sh
+sudo ./linux.sh
 echo "windows.sh"
-./windows.sh
+sudo ./windows.sh
 
 echo "postBuild.sh"
-./postBuild.sh
+sudo ./postBuild.sh
 
 cd ..

@@ -4,21 +4,23 @@ branches:
   only:
     - master
 
-clone_folder: ~/go/src/github.com/timeforaninja/go-hms
+clone_folder: /go/src/github.com/timeforaninja/go-hms
 
 image:
   - Ubuntu1804
 
 stack: go 1.11
 
+environment:
+  GOPATH=/go/
+
 install:
-  - sh: GOPATH=~/go
-  - sh: rm -rf $GOPATH/src/github.com/timeforaninja/go-hms/.git
+  - sh: rm -rf /go/src/github.com/timeforaninja/go-hms/.git
   - sh: echo "build-info:"
   - sh: echo $PATH
   - sh: echo $GOPATH
   - sh: echo $PWD
-  - sh: ls -lahR $GOPATH/src/github.com/timeforaninja/go-hms
+  - sh: ls -lahR /go/src/github.com/timeforaninja/go-hms
   # wait 3 seconds for the prev command
   - sh: sleep 3
   - go version
@@ -31,7 +33,7 @@ install:
   - go vet $GOPATH/src/github.com/timeforaninja/go-hms
 
 build_script:
-  - sh: bash $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
+  - bash $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
 
 artifacts:
   - path: artifacts
