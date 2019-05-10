@@ -15,6 +15,7 @@ install:
   - sh: GOPATH=~/go
   - sh: echo $PATH
   - sh: echo $GOPATH
+  - sh: echo $PWD
   - go version
   - go env
   # libssl on linux & openssl on win already preinstalled
@@ -23,6 +24,7 @@ install:
   - go vet ./...
 
 build_script:
+  - echo $PWD
   - sudo ./build.sh
 
 artifacts:

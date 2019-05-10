@@ -5,4 +5,3 @@ rm -r schemacrawler-15.04.01-distribution
 
 echo "-- remove database"
 rm ./test.db
-rm ./test.db.enc
