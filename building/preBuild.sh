@@ -6,8 +6,8 @@ echo "-- creating database"
 go run ./initDB.go
 
 echo "-- prepare schemacrawler"
-sudo apt install -y graphviz unzip default-jre > /dev/null
-unzip schemacrawler-15.04.01-distribution.zip > /dev/null
+sudo apt install -y graphviz unzip default-jre default-jdk > /dev/null
+unzip schemacrawler-15.06.01-distribution.zip > /dev/null
 
 echo "-- prepare linux build"
 sudo apt install -y libssl-dev build-essential curl git > /dev/null
