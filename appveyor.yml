@@ -23,7 +23,7 @@ install:
   - go vet ./...
 
 build_script:
-  - ./build.sh
+  - sudo ./build.sh
 
 artifacts:
   - path: artifacts
