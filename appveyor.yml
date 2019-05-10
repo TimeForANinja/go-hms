@@ -31,8 +31,7 @@ install:
   - go vet $GOPATH/src/github.com/timeforaninja/go-hms
 
 build_script:
-  - sudo $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
-  - sh: sudo bash $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
+  - sh: bash $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
 
 artifacts:
   - path: artifacts
