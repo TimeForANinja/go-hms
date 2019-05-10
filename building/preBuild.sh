@@ -3,7 +3,7 @@
 mkdir -p ../artifacts
 
 echo "-- creating database"
-go run ../initDB.go
+go run ./initDB.go
 
 echo "-- prepare schemacrawler"
 sudo apt install -y graphviz unzip default-jre > /dev/null
