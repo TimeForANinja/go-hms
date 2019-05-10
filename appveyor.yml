@@ -12,7 +12,7 @@ image:
 stack: go 1.11
 
 environment:
-  GOPATH=/go/
+  GOPATH: /go/
 
 install:
   - sh: rm -rf /go/src/github.com/timeforaninja/go-hms/.git
