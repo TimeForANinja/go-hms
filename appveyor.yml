@@ -13,6 +13,7 @@ stack: go 1.11
 
 install:
   - sh: GOPATH=~/go
+  - sh: echo "build-info:"
   - sh: echo $PATH
   - sh: echo $GOPATH
   - sh: echo $PWD
@@ -21,10 +22,12 @@ install:
   # libssl on linux & openssl on win already preinstalled
   - go get -u github.com/xeodou/go-sqlcipher
   - go get -u golang.org/x/crypto/bcrypt
-  - go vet ./...
+
+test_script:
+  - go vet $GOPATH/src/github.com/timeforaninja/go-hms
 
 build_script:
-  - sudo $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
+  - sh: sudo $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
 
 artifacts:
   - path: artifacts
