@@ -11,14 +11,12 @@ image:
 
 stack: go 1.11
 
-environment:
-  GOPATH: /usr/go/
-
 before_test:
   - go vet /usr/go/src/github.com/timeforaninja/go-hms/.
 
 install:
   - sh: rm -rf /usr/go/src/github.com/timeforaninja/go-hms/.git
+  - sh: GOPATH=/usr/go/
   - echo "build-info:"
   - echo $PATH
   - echo $GOPATH
