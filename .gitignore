@@ -19,8 +19,5 @@
 *.pem
 
 # build files & util
-openssl/*
-build/*
-
-# sql schemas
-sql_schema.*
+schemacrawler*/
+artifacts/*

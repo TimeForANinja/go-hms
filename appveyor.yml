@@ -23,8 +23,14 @@ install:
   - go vet ./...
 
 build_script:
-  - go build -o bin/go-hms main.go
+  - ./build.sh
 
 artifacts:
-  - path: bin/go-hms
-    name: binary_linux
+  - path: artifacts
+    name: hms-linux
+  - path: artifacts
+    name: hms-windows.exe
+  - path: artifacts
+    name: sql_schema.html
+  - path: artifacts
+    name: sql_schema.png
