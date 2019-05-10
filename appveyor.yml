@@ -35,11 +35,11 @@ before_test:
   # golangci-lint run $GOPATH/src/github.com/timeforaninja/go-hms/
 
 artifacts:
-  - path: $GOPATH/src/github.com/timeforaninja/go-hms/artifacts
+  - path: /home/appveyor/projects/go/src/github.com/timeforaninja/go-hms/artifacts
     name: hms-linux
-  - path: $GOPATH/src/github.com/timeforaninja/go-hms/artifacts
+  - path: /home/appveyor/projects/go/src/github.com/timeforaninja/go-hms/artifacts
     name: hms-windows.exe
-  - path: $GOPATH/src/github.com/timeforaninja/go-hms/artifacts
+  - path: /home/appveyor/projects/go/src/github.com/timeforaninja/go-hms/artifacts
     name: sql_schema.html
-  - path: $GOPATH/src/github.com/timeforaninja/go-hms/artifacts
+  - path: /home/appveyor/projects/go/src/github.com/timeforaninja/go-hms/artifacts
     name: sql_schema.png
