@@ -7,7 +7,7 @@ branches:
 clone_folder: ~/go/src/github.com/timeforaninja/go-hms
 
 image:
-  - Ubuntu1804
+  - ubuntu
 
 stack: go 1.11
 
@@ -17,6 +17,7 @@ install:
   - sh: echo $PATH
   - sh: echo $GOPATH
   - sh: echo $PWD
+  - sh: ls -lahR $GOPATH/src/github.com/timeforaninja/go-hms
   - go version
   - go env
   # libssl on linux & openssl on win already preinstalled
