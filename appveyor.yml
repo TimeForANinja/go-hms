@@ -15,7 +15,7 @@ environment:
   GOPATH: /usr/go/
 
 before_test:
-  - go vet /usr/go/src/github.com/timeforaninja/go-hms
+  - go vet /usr/go/src/github.com/timeforaninja/go-hms/
 
 install:
   - sh: rm -rf /usr/go/src/github.com/timeforaninja/go-hms/.git
