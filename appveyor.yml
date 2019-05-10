@@ -7,12 +7,12 @@ branches:
 image:
   - Ubuntu1804
 
-# clone_folder: $GOPATH/src/github.com/timeforaninja/go-hms
+clone_folder: /home/appveyor/projects/go/src/github.com/timeforaninja/go-hms
 
 stack: go 1.11
 
 install:
-  - GOPATH=/home/appveyor/projects/go-hms/
+  - GOPATH=/home/appveyor/projects/go/
   - rm -rf $GOPATH/src/github.com/timeforaninja/go-hms/.git
   - echo "build-info:"
   - echo $PATH
