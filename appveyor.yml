@@ -12,6 +12,7 @@ image:
 stack: go 1.11
 
 install:
+  - GOPATH=/home/appveyor/projects/go-hms/
   - rm -rf $GOPATH/src/github.com/timeforaninja/go-hms/.git
   - echo "build-info:"
   - echo $PATH
