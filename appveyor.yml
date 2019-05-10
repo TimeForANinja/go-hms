@@ -7,7 +7,7 @@ branches:
 image:
   - Ubuntu1804
 
-clone_folder: $GOPATH/src/github.com/timeforaninja/go-hms
+# clone_folder: $GOPATH/src/github.com/timeforaninja/go-hms
 
 stack: go 1.11
 
