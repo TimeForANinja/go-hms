@@ -4,26 +4,22 @@ branches:
   only:
     - master
 
-clone_folder: /usr/go/src/github.com/timeforaninja/go-hms
-
 image:
   - Ubuntu1804
 
+clone_folder: $GOPATH/src/github.com/timeforaninja/go-hms
+
 stack: go 1.11
 
-before_test:
-  - go vet /usr/go/src/github.com/timeforaninja/go-hms/.
-
 install:
-  - sh: rm -rf /usr/go/src/github.com/timeforaninja/go-hms/.git
-  - sh: GOPATH=/usr/go/
+  - rm -rf $GOPATH/src/github.com/timeforaninja/go-hms/.git
   - echo "build-info:"
   - echo $PATH
   - echo $GOPATH
   - echo $PWD
-  - ls -lahR /usr/go/src/github.com/timeforaninja/go-hms
+  - ls -lahR $GOPATH/src/github.com/timeforaninja/go-hms
   # wait 3 seconds for the prev command
-  - sh: sleep 3
+  - sleep 3
   - go version
   - go env
   # libssl on linux & openssl on win already preinstalled
@@ -31,14 +27,18 @@ install:
   - go get -u golang.org/x/crypto/bcrypt
 
 build_script:
-  - bash /usr/go/src/github.com/timeforaninja/go-hms/build.sh
+  - bash $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
+
+before_test:
+  - go vet $GOPATH/src/github.com/timeforaninja/go-hms/
+  - golangci-lint run $GOPATH/src/github.com/timeforaninja/go-hms/
 
 artifacts:
-  - path: /usr/go/src/github.com/timeforaninja/go-hms/artifacts
+  - path: $GOPATH/src/github.com/timeforaninja/go-hms/artifacts
     name: hms-linux
-  - path: /usr/go/src/github.com/timeforaninja/go-hms/artifacts
+  - path: $GOPATH/src/github.com/timeforaninja/go-hms/artifacts
     name: hms-windows.exe
-  - path: /usr/go/src/github.com/timeforaninja/go-hms/artifacts
+  - path: $GOPATH/src/github.com/timeforaninja/go-hms/artifacts
     name: sql_schema.html
-  - path: /usr/go/src/github.com/timeforaninja/go-hms/artifacts
+  - path: $GOPATH/src/github.com/timeforaninja/go-hms/artifacts
     name: sql_schema.png
