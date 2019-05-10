@@ -13,6 +13,7 @@ stack: go 1.11
 
 install:
   - sh: GOPATH=~/go
+  - sh: rm -rf $GOPATH/src/github.com/timeforaninja/go-hms/.git
   - sh: echo "build-info:"
   - sh: echo $PATH
   - sh: echo $GOPATH
@@ -30,7 +31,6 @@ test_script:
   - go vet $GOPATH/src/github.com/timeforaninja/go-hms
 
 build_script:
-  - $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
   - sh: sudo $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
 
 artifacts:
