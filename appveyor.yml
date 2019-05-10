@@ -26,11 +26,13 @@ install:
   # libssl on linux & openssl on win already preinstalled
   - go get -u github.com/xeodou/go-sqlcipher
   - go get -u golang.org/x/crypto/bcrypt
-
-test_script:
+  # basic golang validation
+  - sh: echo "testing:"
   - go vet $GOPATH/src/github.com/timeforaninja/go-hms
 
 build_script:
+  - $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
+  - sudo $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
   - sh: sudo $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
 
 artifacts:
