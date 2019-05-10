@@ -12,7 +12,7 @@ clone_folder: /home/appveyor/projects/go/src/github.com/timeforaninja/go-hms
 stack: go 1.11
 
 install:
-  - GOPATH=/home/appveyor/projects/go/
+  - GOPATH=/home/appveyor/projects/go
   - rm -rf $GOPATH/src/github.com/timeforaninja/go-hms/.git
   - echo "build-info:"
   - echo $PATH
@@ -32,7 +32,7 @@ build_script:
 
 before_test:
   - go vet $GOPATH/src/github.com/timeforaninja/go-hms/
-  - golangci-lint run $GOPATH/src/github.com/timeforaninja/go-hms/
+  # golangci-lint run $GOPATH/src/github.com/timeforaninja/go-hms/
 
 artifacts:
   - path: $GOPATH/src/github.com/timeforaninja/go-hms/artifacts
