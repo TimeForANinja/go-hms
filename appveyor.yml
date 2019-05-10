@@ -36,11 +36,11 @@ build_script:
   - bash /usr/go/src/github.com/timeforaninja/go-hms/build.sh
 
 artifacts:
-  - path: artifacts
+  - path: /usr/go/src/github.com/timeforaninja/go-hms/artifacts
     name: hms-linux
-  - path: artifacts
+  - path: /usr/go/src/github.com/timeforaninja/go-hms/artifacts
     name: hms-windows.exe
-  - path: artifacts
+  - path: /usr/go/src/github.com/timeforaninja/go-hms/artifacts
     name: sql_schema.html
-  - path: artifacts
+  - path: /usr/go/src/github.com/timeforaninja/go-hms/artifacts
     name: sql_schema.png
