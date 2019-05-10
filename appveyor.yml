@@ -24,8 +24,7 @@ install:
   - go vet ./...
 
 build_script:
-  - echo $PWD
-  - sudo ./build.sh
+  - sudo $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
 
 artifacts:
   - path: artifacts
