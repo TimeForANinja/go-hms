@@ -9,7 +9,7 @@ clone_folder: ~/go/src/github.com/timeforaninja/go-hms
 image:
   - Ubuntu1804
 
-stack: go 1.12
+stack: go 1.11
 
 install:
   - sh: GOPATH=~/go
