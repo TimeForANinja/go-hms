@@ -4,8 +4,8 @@ echo "-- build windows openssl"
 git clone https://github.com/openssl/openssl --depth 1 /tmp/openssl > /dev/null
 cd /tmp/openssl/
 ./Configure mingw64 shared --cross-compile-prefix=x86_64-w64-mingw32- --prefix=/usr/x86_64-w64-mingw32 > /dev/null
-make > /dev/null
-sudo make install > /dev/null
+make -w > /dev/null
+sudo make -w install > /dev/null
 cd $GOPATH/src/github.com/timeforaninja/go-hms/building
 rm -rf /tmp/openssl
 
