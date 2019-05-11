@@ -29,6 +29,7 @@ install:
 
 build_script:
   - bash $GOPATH/src/github.com/timeforaninja/go-hms/build.sh
+  - ls -lahR $GOPATH/src/github.com/timeforaninja/go-hms
 
 before_test:
   - go vet $GOPATH/src/github.com/timeforaninja/go-hms/
