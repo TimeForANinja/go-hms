@@ -7,6 +7,8 @@ branches:
 image:
   - Ubuntu1804
 
+clone_depth: 1
+
 clone_folder: /home/appveyor/projects/go/src/github.com/timeforaninja/go-hms
 
 stack: go 1.11
