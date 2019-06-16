@@ -2,6 +2,9 @@
 
 mkdir -p ../artifacts
 
+# echo "-- prepare apt"
+# sudo apt update > /dev/null
+
 echo "-- creating database"
 go run ./initDB.go
 

@@ -14,7 +14,6 @@ clone_folder: /home/appveyor/projects/go/src/github.com/timeforaninja/go-hms
 stack: go 1.11
 
 install:
-  - sh: sudo apt update > /dev/null
   - GOPATH=/home/appveyor/projects/go
   - rm -rf $GOPATH/src/github.com/timeforaninja/go-hms/.git
   - echo "build-info:"
