@@ -1,6 +1,9 @@
 # go-hms
 a simple, standalon home media server written in go(lang)
 
+# prebuilds
+prebuilds can be found [here on appveyor](https://ci.appveyor.com/project/TimeForANinja/go-hms/build/artifacts)
+
 # installation (linux)
 ## install dependencies
 ```
