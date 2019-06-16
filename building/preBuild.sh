@@ -2,10 +2,6 @@
 
 mkdir -p ../artifacts
 
-echo "-- prepare apt"
-export DEBIAN_FRONTEND=noninteractive
-sudo apt update > /dev/null
-
 echo "-- creating database"
 go run ./initDB.go
 
