@@ -21,3 +21,6 @@
 # build files & util
 schemacrawler*/
 artifacts/*
+
+# intellij
+.idea
