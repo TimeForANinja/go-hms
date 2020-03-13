@@ -64,3 +64,5 @@ mklink /D %GOPATH%\src\github.com\timeforaninja\go-hms C:\Users\<user>\Documents
 mkdir -p ~/go/src/github.com/timeforaninja
 ln -s /mnt/hgfs/GitHub/go-hms ~/go/src/github.com/timeforaninja/go-hms
 ```
+
+TODO: [use acme autocert](https://godoc.org/golang.org/x/crypto/acme/autocert)
